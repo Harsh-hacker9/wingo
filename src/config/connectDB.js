@@ -1,4 +1,5 @@
 import admin from 'firebase-admin';
+import mysql from 'mysql2/promise';
 
 // Initialize Firebase Admin SDK
 try {
@@ -26,77 +27,24 @@ try {
 // Firestore database instance
 const db = admin.firestore();
 
-// Create a connection object that mimics the MySQL connection interface
-const connection = {
-  query: async (sql, params = []) => {
-    try {
-      // Parse SQL query to determine operation
-      if (sql.toLowerCase().includes('select')) {
-        // Handle SELECT queries
-        if (sql.includes('FROM users')) {
-          let collectionRef = db.collection('users');
-          
-          // Handle WHERE clause
-          if (sql.includes('WHERE')) {
-            const whereClause = sql.match(/WHERE\s+(\w+)\s*=\s*\?/i);
-            if (whereClause && params.length > 0) {
-              const field = whereClause[1];
-              const value = params[0];
-              collectionRef = collectionRef.where(field, '==', value);
-            }
-          }
-          
-          const snapshot = await collectionRef.get();
-          const results = [];
-          
-          snapshot.forEach(doc => {
-            results.push({ id: doc.id, ...doc.data() });
-          });
-          
-          return [results, []];
-        }
-        
-        // Add more SELECT query handlers as needed
-      } else if (sql.toLowerCase().includes('insert')) {
-        // Handle INSERT queries
-        if (sql.includes('INSERT INTO users')) {
-          // Extract data from params - this is simplified
-          const userData = params[0] || {};
-          const docRef = await db.collection('users').add(userData);
-          
-          return { insertId: docRef.id, affectedRows: 1 };
-        }
-      } else if (sql.toLowerCase().includes('update')) {
-        // Handle UPDATE queries
-        if (sql.includes('UPDATE users')) {
-          // This is complex and depends on the WHERE clause
-          // Implementation would need to find and update documents
-          // based on the WHERE conditions
-          return { affectedRows: 1 }; // Mock response
-        }
-      } else if (sql.toLowerCase().includes('delete')) {
-        // Handle DELETE queries
-        return { affectedRows: 1 }; // Mock response
-      }
-      
-      throw new Error('Query type not supported: ' + sql);
-    } catch (error) {
-      console.error('Database query error:', error);
-      throw error;
-    }
-  },
-  
-  execute: async (sql, params = []) => {
-    // Execute is typically used for INSERT, UPDATE, DELETE operations
-    return await connection.query(sql, params);
-  },
-  
-  // Additional methods that might be needed
-  async beginTransaction() {
-    // Firestore transactions are handled differently
-    // This is a placeholder
-    return { commit: async () => {}, rollback: async () => {} };
+// InfinityFree MySQL connection configuration
+const connection = mysql.createPool({
+  host: process.env.DATABASE_HOST || 'sql113.infinityfree.com', // Replace with your actual InfinityFree host
+  user: process.env.DATABASE_USER || 'if0_37266337', // Replace with your actual InfinityFree username
+  password: process.env.DATABASE_PASSWORD || 'your_password', // Replace with your actual InfinityFree password
+  database: process.env.DATABASE_NAME || 'if0_37266337_wingo', // Replace with your actual InfinityFree database name
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
+
+// Test the connection
+connection.getConnection((err) => {
+  if (err) {
+    console.error('Database connection error:', err.message);
+  } else {
+    console.log('Connected to InfinityFree MySQL database successfully');
   }
-};
+});
 
 export default connection;
