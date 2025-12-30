@@ -1,14 +1,14 @@
 import express from 'express';
-import accountController from '../controllers/accountController';
-import homeController from '../controllers/homeController';
-import winGoController from '../controllers/winGoController';
-import userController from '../controllers/userController';
-import middlewareController from '../controllers/middlewareController';
-import adminController from '../controllers/adminController';
-import dailyController from '../controllers/dailyController';
-import k5Controller from '../controllers/k5Controller';
-import k3Controller from '../controllers/k3Controller';
-import paymentController from '../controllers/paymentController';
+import accountController from '../controllers/accountController.js';
+import homeController from '../controllers/homeController.js';
+import winGoController from '../controllers/winGoController.js';
+import userController from '../controllers/userController.js';
+import middlewareController from '../controllers/middlewareController.js';
+import adminController from '../controllers/adminController.js';
+import dailyController from '../controllers/dailyController.js';
+import k5Controller from '../controllers/k5Controller.js';
+import k3Controller from '../controllers/k3Controller.js';
+import paymentController from '../controllers/paymentController.js';
 
 let router = express.Router();
 

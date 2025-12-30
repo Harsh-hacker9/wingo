@@ -1,10 +1,12 @@
 import 'dotenv/config'
 
 import express from 'express';
-import configViewEngine from './config/configEngine';
-import routes from './routes/web';
-import cronJobContronler from './controllers/cronJobContronler';
-import socketIoController from './controllers/socketIoController';
+const configViewEngine = require('./config/configEngine.js').default;
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const routes = require('./routes/web.js');
+const cronJobContronler = require('./controllers/cronJobContronler.js');
+const socketIoController = require('./controllers/socketIoController.js');
 require('dotenv').config();
 let cookieParser = require('cookie-parser');
 
