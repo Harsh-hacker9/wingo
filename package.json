@@ -37,6 +37,7 @@
         "querystring": "^0.2.1",
         "request": "^2.88.2",
         "socket.io": "^4.4.1",
-        "uuid": "^9.0.1"
+        "uuid": "^9.0.1",
+        "firebase-admin": "^11.11.1"
     }
 }
