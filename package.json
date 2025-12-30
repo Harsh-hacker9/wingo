@@ -6,10 +6,15 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "database": "nodemon --exec ./node_modules/.bin/babel-node src/modal/CreateDatabase.js",
-        "start": "nodemon --exec ./node_modules/.bin/babel-node src/server.js"
+        "start": "nodemon --exec ./node_modules/.bin/babel-node src/server.js",
+        "serve": "node src/server.js",
+        "build": "npm install"
     },
     "author": "",
     "license": "ISC",
+    "engines": {
+        "node": ">=14.0.0"
+    },
     "dependencies": {
         "@babel/core": "7.15.5",
         "@babel/node": "7.15.4",
