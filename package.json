@@ -3,12 +3,11 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "database": "nodemon --exec ./node_modules/.bin/babel-node src/modal/CreateDatabase.js",
         "start": "nodemon --exec ./node_modules/.bin/babel-node src/server.js",
-        "serve": "babel-node src/server.js",
+        "serve": "node src/server.js",
         "build": "npm install"
     },
     "author": "",

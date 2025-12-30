@@ -1,13 +1,9 @@
-import 'dotenv/config'
-
-import express from 'express';
-const configViewEngine = require('./config/configEngine.js').default;
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const routes = require('./routes/web.js');
-const cronJobContronler = require('./controllers/cronJobContronler.js');
-const socketIoController = require('./controllers/socketIoController.js');
-require('dotenv').config();
+require('dotenv/config');
+let express = require('express');
+let configViewEngine = require('./config/configEngine.js').default;
+let routes = require('./routes/web.js');
+let cronJobContronler = require('./controllers/cronJobContronler.js');
+let socketIoController = require('./controllers/socketIoController.js');
 let cookieParser = require('cookie-parser');
 
 const app = express();
@@ -39,4 +35,3 @@ socketIoController.sendMessageAdmin(io);
 server.listen(port, () => {
     console.log("Connected success port: " + port);
 });
-
