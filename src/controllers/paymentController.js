@@ -1,4 +1,4 @@
-import connection from "../config/connectDB";
+import connection from "../config/connectDB.js";
 import axios from 'axios';
 import moment from "moment";
 import crypto from "crypto";

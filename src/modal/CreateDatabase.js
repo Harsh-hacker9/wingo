@@ -1,4 +1,4 @@
-import connection from "../config/connectDB";
+import connection from "../config/connectDB.js";
 require('dotenv').config();
 
 let timeNow = Date.now();

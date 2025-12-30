@@ -1,5 +1,5 @@
 import e from "express";
-import connection from "../config/connectDB";
+import connection from "../config/connectDB.js";
 require('dotenv').config();
 
 

@@ -1,4 +1,4 @@
-import connection from '../config/connectDB';
+import connection from '../config/connectDB.js';
 
 const middlewareController = async(req, res, next) => {
     // xác nhận token

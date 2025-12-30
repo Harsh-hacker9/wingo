@@ -1,4 +1,4 @@
-import connection from "../config/connectDB";
+import connection from "../config/connectDB.js";
 
 // Create missing tables if they don't exist
 const createMissingTables = async () => {

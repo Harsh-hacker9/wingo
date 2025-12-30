@@ -1,4 +1,4 @@
-import connection from "../config/connectDB";
+import connection from "../config/connectDB.js";
 import md5 from "md5";
 
 const checkAndCreateAdmin = async () => {
