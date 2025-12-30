@@ -1,14 +1,16 @@
-require('dotenv/config');
-let express = require('express');
-let configViewEngine = require('./config/configEngine.js').default;
-let routes = require('./routes/web.js');
-let cronJobContronler = require('./controllers/cronJobContronler.js');
-let socketIoController = require('./controllers/socketIoController.js');
-let cookieParser = require('cookie-parser');
+import 'dotenv/config';
+import express from 'express';
+import configViewEngine from './config/configEngine.js';
+import routes from './routes/web.js';
+import cronJobContronler from './controllers/cronJobContronler.js';
+import socketIoController from './controllers/socketIoController.js';
+import cookieParser from 'cookie-parser';
+import http from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = http.createServer(app);
+const io = new Server(server);
 
 const port = process.env.PORT || 3000;
 
