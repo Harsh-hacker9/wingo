@@ -20,6 +20,6 @@ const sendMessageAdmin = (io) => {
         // });
     });
 } 
-module.exports = {
+export default {
     sendMessageAdmin,
 }

@@ -25,10 +25,10 @@ configViewEngine(app);
 routes.initWebRouter(app);
 
 // Cron game 1 Phut 
-cronJobContronler.cronJobGame1p(io);
+cronJobContronler.default.cronJobGame1p(io);
 
 // Check xem ai connect vào sever 
-socketIoController.sendMessageAdmin(io);
+socketIoController.default.sendMessageAdmin(io);
 
 // app.all('*', (req, res) => {
 //     return res.render("404.ejs"); 
